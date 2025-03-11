@@ -1,0 +1,18 @@
+.pl-8 {
+    padding-left: 8px;
+}
+
+.text-title {
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.wrapper {
+    width: 100%;
+    padding-inline:var(--cui-sidebar-occupy-start, 0) var(--cui-sidebar-occupy-end, 0);will-change: auto;
+    transition: padding .15s
+}
+
+.card-body {
+    background-color: rgba(245, 245, 245, 0.555);
+}
