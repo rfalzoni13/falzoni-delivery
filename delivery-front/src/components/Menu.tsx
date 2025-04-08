@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CSidebar, CSidebarHeader, CSidebarBrand, CImage, CSidebarNav, CNavTitle, CNavItem, CHeader, CContainer, CButton, CHeaderNav, CCardBody, CFooter, CLink } from "@coreui/react";
-import { cilBuilding, cilMenu } from "@coreui/icons";
+import { cilBuilding, cilGroup, cilMenu } from "@coreui/icons";
 import CIcon from "@coreui/icons-react";
 import Content from "./Content";
 
@@ -17,6 +17,9 @@ function Menu() {
                     <CNavTitle>Menu Principal</CNavTitle>
                     <CNavItem href="/enderecos">
                         <CIcon customClassName="nav-icon" icon={cilBuilding} /> Endereços
+                    </CNavItem>
+                    <CNavItem href="/clientes">
+                        <CIcon customClassName="nav-icon" icon={cilGroup} /> Clientes
                     </CNavItem>
                 </CSidebarNav>
             </CSidebar>

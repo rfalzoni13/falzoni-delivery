@@ -1,12 +1,17 @@
 import { BrowserRouter } from 'react-router-dom'
 import Menu from './components/Menu'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import 'dayjs/locale/pt-br';
 
 function App() {
     return (
         <>
-            <BrowserRouter>
-                <Menu />
-            </BrowserRouter>
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='pt-br'>
+                <BrowserRouter>
+                    <Menu />
+                </BrowserRouter>
+            </LocalizationProvider>
         </>
     )
 }
