@@ -107,7 +107,7 @@ export default function AddressForm() {
                     MySwal.showLoading()
                     fetch("http://localhost:8080/api/address", options)
                         .then((body) => {
-                            if (body.status == 200) {
+                            if (body.status == 200 || body.status == 201) {
                                 navigate("/enderecos");
                             }
                             return body.text()

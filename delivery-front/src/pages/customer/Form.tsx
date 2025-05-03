@@ -104,7 +104,7 @@ export default function CustomerForm() {
                     MySwal.showLoading()
                     fetch("http://localhost:8000/api/customer", options)
                         .then((body) => {
-                            if (body.status == 200) {
+                            if (body.status == 200 || body.status == 201) {
                                 navigate("/clientes");
                             }
                             return body.text()
