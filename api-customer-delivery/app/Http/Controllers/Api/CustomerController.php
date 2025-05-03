@@ -22,7 +22,7 @@ class CustomerController extends Controller
             $customers = $this->service->getAll();
             return response()->json($customers);
         } catch (Exception $ex) {
-            return response()->json($ex->getMessage(), 400);
+            return response($ex->getMessage(), 400);
         }
     }
 
@@ -32,7 +32,7 @@ class CustomerController extends Controller
             $customer = $this->service->get($id);
             return response()->json($customer);
         } catch (Exception $ex) {
-            return response()->json($ex->getMessage(), 400);
+            return response($ex->getMessage(), 400);
         }
     }
 
@@ -41,9 +41,9 @@ class CustomerController extends Controller
         try {
             $obj = $request->all();
             $this->service->create($obj);
-            return response()->json("Registro inserido com sucesso!", 201);
+            return response("Registro inserido com sucesso!", 201);
         } catch (Exception $ex) {
-            return response()->json($ex->getMessage(), 400);
+            return response($ex->getMessage(), 400);
         }
     }
 
@@ -52,9 +52,9 @@ class CustomerController extends Controller
         try {
             $obj = $request->all();
             $this->service->update($obj);
-            return response()->json("Registro atualizado com sucesso!");
+            return response("Registro atualizado com sucesso!");
         } catch (Exception $ex) {
-            return response()->json($ex->getMessage(), 400);
+            return response($ex->getMessage(), 400);
         }
     }
 
@@ -62,9 +62,9 @@ class CustomerController extends Controller
     {
         try {
             $this->service->delete($id);
-            return response()->json("Registro removido com sucesso!");
+            return response("Registro removido com sucesso!");
         } catch (Exception $ex) {
-            return response()->json($ex->getMessage(), 400);
+            return response($ex->getMessage(), 400);
         }
     }
 }
