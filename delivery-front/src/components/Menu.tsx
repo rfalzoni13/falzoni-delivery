@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { CSidebar, CSidebarHeader, CSidebarBrand, CImage, CSidebarNav, CNavTitle, CNavItem, CHeader, CContainer, CButton, CHeaderNav, CCardBody, CFooter, CLink } from "@coreui/react";
-import { cilBuilding, cilGroup, cilMenu } from "@coreui/icons";
-import CIcon from "@coreui/icons-react";
-import Content from "./Content";
+import { useState } from "react"
+import { CSidebar, CSidebarHeader, CSidebarBrand, CImage, CSidebarNav, CNavTitle, CNavItem, CHeader, CContainer, CButton, CHeaderNav, CCardBody, CFooter, CLink } from "@coreui/react"
+import { cilBuilding, cilGift, cilGroup, cilMenu } from "@coreui/icons"
+import CIcon from "@coreui/icons-react"
+import Content from './Content'
 
 function Menu() {
     const [visible, setVisible] = useState(true)
@@ -20,6 +20,9 @@ function Menu() {
                     </CNavItem>
                     <CNavItem href="/clientes">
                         <CIcon customClassName="nav-icon" icon={cilGroup} /> Clientes
+                    </CNavItem>
+                    <CNavItem href="/encomendas">
+                        <CIcon customClassName="nav-icon" icon={cilGift} /> Encomendas
                     </CNavItem>
                 </CSidebarNav>
             </CSidebar>
@@ -39,7 +42,7 @@ function Menu() {
                 <CFooter>
                     <div>
                         <strong>
-                            <CLink target="_blank" className="text-decoration-none" href="https://github.com/rfalzoni13">Renato Falzoni&copy;</CLink>
+                            <CLink target="_blank" className="text-decoration-none" href="https://github.com/rfalzoni13">Renato Falzoni&copy</CLink>
                         </strong>
                         <span>Todos os direitos reservados</span>
                     </div>
