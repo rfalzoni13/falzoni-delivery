@@ -42,7 +42,7 @@ function Menu() {
                 <CFooter>
                     <div>
                         <strong>
-                            <CLink target="_blank" className="text-decoration-none" href="https://github.com/rfalzoni13">Renato Falzoni&copy</CLink>
+                            <CLink target="_blank" className="text-decoration-none" href="https://github.com/rfalzoni13">Renato Falzoni&copy;</CLink>
                         </strong>
                         <span>Todos os direitos reservados</span>
                     </div>

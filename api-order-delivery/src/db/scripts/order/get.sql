@@ -1,0 +1,1 @@
+SELECT `id`, `name`, `price`, `quantity`, `unity` FROM `order` WHERE `id` = ?

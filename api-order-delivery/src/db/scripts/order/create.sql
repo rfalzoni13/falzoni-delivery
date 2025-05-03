@@ -1,0 +1,1 @@
+INSERT INTO `order`(`name`,`price`,`quantity`,`unity`) VALUES(?, ?, ?, ?)

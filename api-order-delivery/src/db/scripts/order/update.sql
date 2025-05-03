@@ -1,0 +1,1 @@
+UPDATE `order` SET `name` = ?, `price` = ?,`quantity` = ?, `unity` = ? WHERE `id` = ?
