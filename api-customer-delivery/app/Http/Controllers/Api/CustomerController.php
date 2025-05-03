@@ -41,7 +41,7 @@ class CustomerController extends Controller
         try {
             $obj = $request->all();
             $this->service->create($obj);
-            return response()->json("Registro inserido com sucesso!");
+            return response()->json("Registro inserido com sucesso!", 201);
         } catch (Exception $ex) {
             return response()->json($ex->getMessage(), 400);
         }
