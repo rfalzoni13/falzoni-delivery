@@ -39,7 +39,7 @@ public class AddressController {
     public ResponseEntity<Object> insert(@RequestBody Address obj) {
         try {
             this.service.insert(obj);
-            return ResponseEntity.ok("Registro criado com sucesso!");
+            return ResponseEntity.status(201).body("Registro criado com sucesso!");
         } catch (Exception ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
