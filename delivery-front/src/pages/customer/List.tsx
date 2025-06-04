@@ -8,7 +8,7 @@ function convertDate(date: any) {
     return dayjs(date).format("DD/MM/YYYY")
 }
 
-export default function Customers() {
+export default function CustomerList() {
     const [rows, setRows] = useState<any[]>([])
 
     function loadData() {
