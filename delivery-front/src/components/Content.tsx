@@ -6,6 +6,8 @@ import CustomerList from "../pages/customer/List"
 import CustomerForm from "../pages/customer/Form"
 import OrderList from "../pages/order/List"
 import OrderForm from "../pages/order/Form"
+import DeliveryForm from "../pages/delivery/Form"
+import DeliveryList from "../pages/delivery/List"
 
 function Content() {
     return (
@@ -23,6 +25,10 @@ function Content() {
                 <Route path="encomendas">
                     <Route index element={<OrderList />} />
                     <Route path={"form/:id?"} element={<OrderForm />} />
+                </Route>
+                <Route path="entregas">
+                    <Route index element={<DeliveryList />} />
+                    <Route path={"form/:id?"} element={<DeliveryForm />} />
                 </Route>
             </Routes>
         </>

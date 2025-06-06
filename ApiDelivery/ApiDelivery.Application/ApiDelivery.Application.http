@@ -1,0 +1,39 @@
+@ApiDelivery.Application_HostAddress = http://localhost:5135
+
+GET {{ApiDelivery.Application_HostAddress}}/api/delivery/
+Accept: application/json
+
+###
+
+GET {{ApiDelivery.Application_HostAddress}}/api/delivery/1
+Accept: application/json
+
+###
+
+POST {{ApiDelivery.Application_HostAddress}}/api/delivery/
+Accept: application/json
+{
+  "address_id": 1,
+  "customer_id": 2,
+  "order_id": 1,
+  "data": "2023-10-01T00:00:00Z"
+}
+
+###
+
+PUT {{ApiDelivery.Application_HostAddress}}/api/delivery/
+Accept: application/json
+{
+  "id": 1,
+  "address_id": 1,
+  "customer_id": 2,
+  "order_id": 1,
+  "data": "2023-10-01T00:00:00Z"
+}
+
+###
+
+DELETE {{ApiDelivery.Application_HostAddress}}/api/delivery/1
+Accept: application/json
+
+###

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { CSidebar, CSidebarHeader, CSidebarBrand, CImage, CSidebarNav, CNavTitle, CNavItem, CHeader, CContainer, CButton, CHeaderNav, CCardBody, CFooter, CLink } from "@coreui/react"
-import { cilBuilding, cilGift, cilGroup, cilMenu } from "@coreui/icons"
+import { cilBuilding, cilGift, cilGroup, cilMenu, cilTruck } from "@coreui/icons"
 import CIcon from "@coreui/icons-react"
 import Content from './Content'
 
@@ -23,6 +23,9 @@ function Menu() {
                     </CNavItem>
                     <CNavItem href="/encomendas">
                         <CIcon customClassName="nav-icon" icon={cilGift} /> Encomendas
+                    </CNavItem>
+                    <CNavItem href="/entregas">
+                        <CIcon customClassName="nav-icon" icon={cilTruck} /> Entregas
                     </CNavItem>
                 </CSidebarNav>
             </CSidebar>
