@@ -107,13 +107,14 @@ export default function AddressForm() {
                     MySwal.showLoading()
                     fetch("http://localhost:8080/api/address", options)
                         .then((body) => {
-                            if (body.status == 200 || body.status == 201) {
+                            if (body.status == 201 || body.status == 204) {
                                 navigate("/enderecos");
                             }
                             return body.text()
                         })
                         .then((res) => {
-                            return MySwal.fire(<p>{res}</p>)
+                            const message = obj.id == 0 ? "Registro incluído com sucesso" : "Registro atualizado com sucesso"
+                            return MySwal.fire(<p>{res || message}</p>)
 
                         })
                         .catch((err) => console.error(err))

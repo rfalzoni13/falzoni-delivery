@@ -78,13 +78,14 @@ export default function OrderForm() {
                     MySwal.showLoading()
                     fetch("http://localhost:3000/api/order", options)
                         .then((body) => {
-                            if (body.status == 200 || body.status == 201) {
+                            if (body.status == 201 || body.status == 204) {
                                 navigate("/encomendas");
                             }
                             return body.text()
                         })
                         .then((res) => {
-                            return MySwal.fire(<p>{res}</p>)
+                            const message = obj.id == 0 ? "Registro incluído com sucesso" : "Registro atualizado com sucesso"
+                            return MySwal.fire(<p>{res || message}</p>)
 
                         })
                         .catch((err) => console.error(err))

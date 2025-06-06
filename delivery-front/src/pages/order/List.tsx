@@ -50,9 +50,9 @@ export default function OrderList() {
                     .then((body) => {
                         return body.text()
                     })
-                    .then((res) => {
+                    .then((r) => {
                         loadData()
-                        return MySwal.fire(<p>{res}</p>)
+                        return MySwal.fire(<p>{r || "Registro removido com sucesso"}</p>)
 
                     })
                     .catch((err) => console.error(err))
