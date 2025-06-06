@@ -2,10 +2,14 @@ package com.falzoni.api_address_delivery.controllers;
 
 import com.falzoni.api_address_delivery.entities.Address;
 import com.falzoni.api_address_delivery.services.AddressService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -21,7 +25,7 @@ public class AddressController {
             List<Address> list = this.service.findAll();
             return ResponseEntity.ok(list);
         } catch (Exception ex) {
-            return ResponseEntity.badRequest().body(ex.getMessage());
+            return ResponseEntity.internalServerError().body(ex.getMessage());
         }
     }
 
@@ -30,8 +34,10 @@ public class AddressController {
         try {
             Address obj = this.service.find(id);
             return ResponseEntity.ok(obj);
+        } catch (EntityNotFoundException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
         } catch (Exception ex) {
-            return ResponseEntity.badRequest().body(ex.getMessage());
+            return ResponseEntity.internalServerError().body(ex.getMessage());
         }
     }
 
@@ -39,22 +45,26 @@ public class AddressController {
     public ResponseEntity<Object> insert(@RequestBody Address obj) {
         try {
             this.service.insert(obj);
-            return ResponseEntity.status(201).body("Registro criado com sucesso!");
-        } catch (Exception ex) {
+            return ResponseEntity.created(
+                    URI.create(String.format("%s/api/address/%s",
+                            ServletUriComponentsBuilder.fromCurrentContextPath().toUriString(), obj.getId())))
+                    .build();
+        } catch (NullPointerException | IllegalArgumentException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
+        } catch (Exception ex) {
+            return ResponseEntity.internalServerError().body(ex.getMessage());
         }
     }
 
     @PutMapping
     public ResponseEntity<Object> update(@RequestBody Address obj) {
         try {
-            if(obj.getId() == 0) {
-                throw new Exception("Id ausente! Para criação de um novo registro, deve-se utilizar o método POST");
-            }
             this.service.update(obj);
-            return ResponseEntity.ok("Registro atualizado com sucesso!");
-        } catch (Exception ex) {
+            return ResponseEntity.noContent().build();
+        } catch (NullPointerException | IllegalArgumentException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
+        } catch (Exception ex) {
+            return ResponseEntity.internalServerError().body(ex.getMessage());
         }
     }
 
@@ -62,9 +72,11 @@ public class AddressController {
     public ResponseEntity<Object> delete(@PathVariable(name = "id") int id) {
         try {
             this.service.delete(id);
-            return ResponseEntity.ok("Registro removido com sucesso!");
-        } catch (Exception ex) {
+            return ResponseEntity.noContent().build();
+        } catch (EntityNotFoundException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
+        } catch (Exception ex) {
+            return ResponseEntity.internalServerError().body(ex.getMessage());
         }
     }
 }

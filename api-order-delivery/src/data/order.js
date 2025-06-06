@@ -27,8 +27,9 @@ const orderData = {
         try {
             await db.beginTransaction()
             const sql = scriptReader.order.create()
-            await db.execute(sql, [obj.name, obj.price, obj.quantity, obj.unity])
+            const [result, _] = await db.execute(sql, [obj.name, obj.price, obj.quantity, obj.unity])
             await db.commit()
+            return result.insertId
         } catch(err) {
             await db.rollback()
             log.error(`Ocorreu o seguinte erro: ${err.message}`)
@@ -51,8 +52,9 @@ const orderData = {
         try {
             await db.beginTransaction()
             const sql = scriptReader.order.delete()
-            await db.execute(sql, [id])
+            const [result, _] = await db.execute(sql, [id])
             await db.commit()
+            return result
         } catch(err) {
             await db.rollback()
             log.error(`Ocorreu o seguinte erro: ${err.message}`)

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use InvalidArgumentException;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
+use Throwable;
 
 class CustomerController extends Controller
 {
@@ -25,7 +26,7 @@ class CustomerController extends Controller
             $customers = $this->service->getAll();
             return response()->json($customers);
             
-        } catch (Exception $ex) {
+        } catch (Exception | Throwable $ex) {
             return response($ex->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -34,11 +35,10 @@ class CustomerController extends Controller
     {
         try {
             $customer = $this->service->get($id);
-
-            if($customer == null)
-                return response()->noContent(Response::HTTP_NOT_FOUND);
             return response()->json($customer);
-        } catch (Exception $ex) {
+        } catch (NotFoundResourceException $ex) {
+            return response($ex->getMessage(), Response::HTTP_NOT_FOUND);
+        } catch (Exception | Throwable $ex) {
             return response($ex->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -48,11 +48,11 @@ class CustomerController extends Controller
         try {
             $obj = $request->all();
             $id = $this->service->create($obj);
-            return response()->noContent(201, ["Location" => url("/api/customer/".$id)]);
+            return response()->noContent(Response::HTTP_CREATED, ["Location" => url("/api/customer/".$id)]);
         } catch (InvalidArgumentException $ex) {
             return response($ex->getMessage(), Response::HTTP_BAD_REQUEST);
-        } catch (Exception $ex) {
-            return response($ex->getMessage(), 400);
+        } catch (Exception | Throwable $ex) {
+            return response($ex->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -64,8 +64,8 @@ class CustomerController extends Controller
             return response()->noContent();
         } catch (InvalidArgumentException $ex) {
             return response($ex->getMessage(), Response::HTTP_BAD_REQUEST);
-        } catch (Exception $ex) {
-            return response($ex->getMessage(), 400);
+        } catch (Exception | Throwable $ex) {
+            return response($ex->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -76,8 +76,8 @@ class CustomerController extends Controller
             return response()->noContent();
         } catch (NotFoundResourceException $ex) {
             return response($ex->getMessage(), Response::HTTP_NOT_FOUND);
-        } catch (Exception $ex) {
-            return response($ex->getMessage(), 400);
+        } catch (Exception | Throwable $ex) {
+            return response($ex->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }

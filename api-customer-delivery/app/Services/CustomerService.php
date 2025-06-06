@@ -28,7 +28,12 @@ class CustomerService implements InterfaceCustomerService
 
     public function get(int $id)
     {
-        return $this->model->find($id);
+        $obj = $this->model->find($id);
+
+        if($obj == null)
+            throw new NotFoundResourceException('Registro não encontrado');
+        
+        return $obj;
     }
 
     public function create(array $model) {
